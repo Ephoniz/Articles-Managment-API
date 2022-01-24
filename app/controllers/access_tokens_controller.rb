@@ -1,4 +1,6 @@
 class AccessTokensController < ApplicationController
+    skip_before_action :authorize!, only: :create
+    
     def create
         authenticator = UserAuthenticator.new(params[:code])
         authenticator.perform
@@ -7,11 +9,7 @@ class AccessTokensController < ApplicationController
     end
 
     def destroy
-        render json: {"error" => {
-            "status" => "403",
-            "source" => { "pointer" => "/headers/authorization" },
-            "title" =>  "Not authorized",
-            "detail" => "You have no rights to access this resource."
-            }}, status: 403
+        current_user.access_token.destroy
     end
 end
+ 
