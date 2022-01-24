@@ -15,6 +15,7 @@ gem 'rspec-rails'
 gem 'factory_bot_rails'
 gem 'active_model_serializers', :git => 'https://github.com/rails-api/active_model_serializers.git', :branch => '0-10-stable'
 gem 'kaminari'
+gem "octokit", "~> 4.0"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
