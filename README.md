@@ -1,24 +1,16 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Developing a REST API application followed by https://jsonapi.org standard for API communication.
 
-Things you may want to cover:
+Features:
 
-* Ruby version
+- Listing recent Articles
+- Previewing the article's details
+- Logging in using login/password flow
+- Registering user using login/password flow
+- OAUTH integration with Github
+- Managing own articles (Create/Update/Destroy)
+- Creating comments to articles
+- Token-based authorization
+- Access management check.
+- TDD implementation.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
