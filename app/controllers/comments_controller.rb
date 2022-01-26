@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
-  skip_before_action :authorize!, only: [:index, :create]
+  skip_before_action :authorize!, only: [:index]
   before_action :load_article
-  # GET /comments
+
   def index
     comments = @article.comments.
       page(params[:page]).
@@ -10,17 +10,17 @@ class CommentsController < ApplicationController
     render json: comments
   end
   
-  # POST /comments
   def create
     @comment = @article.comments.build(
       comment_params.merge(user: current_user)
     )
-
-    if @comment.save
+    @comment.save!
       render json: @comment, status: :created, location: @article
-    else
-      render json: @comment.errors, status: :unprocessable_entity
-    end
+  rescue 
+      render json: @comment,
+      adapter: :json_api,
+      serializer: ErrorSerializer,
+      status: :unprocessable_entity
   end
 
 
@@ -28,8 +28,10 @@ class CommentsController < ApplicationController
     def load_article
       @article = Article.find(params[:article_id])
     end
-    # Only allow a list of trusted parameters through.
+
     def comment_params
-      params.require(:comment).permit(:content, :article_id)
+      params.require(:data).require(:attributes)
+        .permit(:content) || 
+        ActionController::Parameters.new
     end
 end
