@@ -1,7 +1,11 @@
 class UserAuthenticator
     attr_reader :authenticator, :access_token
   
-    def initialize(code = nil, login = nil, password = nil)
+    def initialize(params = {})
+        code = params[:code]
+        login = params[:login] || nil
+        password = params[:password] || nil
+
       @authenticator = if code.present?
         Oauth.new(code)
       else

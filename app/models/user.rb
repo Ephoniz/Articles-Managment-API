@@ -9,7 +9,7 @@ class User < ApplicationRecord
     has_one :access_token, dependent: :destroy
 
   def password
-    @password ||= Password.new(encrypted_password)
+    @password ||= Password.new(encrypted_password) if encrypted_password.present?
   end
 
   def password=(new_password)

@@ -42,7 +42,7 @@ class UserAuthenticator::Oauth < UserAuthenticator
         User.create(user_data.merge(provider: 'github'))
       end
     end
-  
+
     attr_reader :code
   end
   
