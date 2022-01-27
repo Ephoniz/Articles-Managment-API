@@ -9,10 +9,10 @@ RSpec.describe AccessToken, type: :model do
       expect(access_token).to be_valid
     end
 
-    # it 'should validate token' do
-    #   access_token = create :access_token
-    #   expect(create :access_token, token: access_token.token).to be_invalid
-    # end
+    it 'should validate token' do
+      access_token = create :access_token
+      expect{create :access_token, token: access_token.token}.to raise_error(ActiveRecord::RecordInvalid)
+    end
   end
 
   describe '#new' do

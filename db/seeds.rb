@@ -10,7 +10,7 @@ Article.destroy_all
 User.destroy_all
 
 p "Creating user"
-admin_user = User.create(login: "admin1", url: "http://admin.com", avatar_url: "http://no-avatar.com", provider: "github")
+admin_user = User.create(login: "wsmith", url: "http://admin.com", avatar_url: "http://no-avatar.com", provider: "github", password: 'secret')
 p "User created succesfully"
 
 p "Creating articles examples"

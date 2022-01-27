@@ -2,6 +2,7 @@ class AccessTokensController < ApplicationController
     skip_before_action :authorize!, only: :create
   
     def create
+        p authentication_params
       authenticator = UserAuthenticator.new(authentication_params)
       authenticator.perform
   
@@ -19,6 +20,7 @@ class AccessTokensController < ApplicationController
     end
   
     def standard_auth_params
+        p params
       params.dig(:data, :attributes)&.permit(:login, :password)
     end
 end

@@ -5,7 +5,7 @@ RSpec.describe AccessTokensController, type: :controller do
     let(:params) do
       {
         data: {
-          attributes: { login: "jsmith", password: "secret" }
+          attributes: { login: "wsmith", password: "secret" }
         }
       }
     end
@@ -25,7 +25,7 @@ RSpec.describe AccessTokensController, type: :controller do
     end
 
     context "when invalid password provided" do
-      let(:user) { create :user, login: 'jsmith', password: 'invalid' }
+      let(:user) { create :user, login: 'wsmith', password: 'invalid' }
       subject { post :create, params: params }
 
       before { user }
@@ -34,7 +34,7 @@ RSpec.describe AccessTokensController, type: :controller do
     end
 
     context "when valid data provided" do
-      let(:user) { create :user, login: 'jsmith', password: 'secret' }
+      let(:user) { create :user, login: 'wsmith', password: 'secret' }
       subject { post :create, params: params }
 
       before { user }
@@ -70,7 +70,7 @@ RSpec.describe AccessTokensController, type: :controller do
     context 'when success request' do
       let(:user_data) do
         {
-          login: 'jsmith1',
+          login: 'wsmith1',
           url: 'http://example.com',
           avatar_url: 'http://example.com/avatar',
           name: 'John Smith'
@@ -94,7 +94,7 @@ RSpec.describe AccessTokensController, type: :controller do
 
       it 'should return proper json body' do
         expect{ subject }.to change{ User.count }.by(1)
-        user = User.find_by(login: 'jsmith1')
+        user = User.find_by(login: 'wsmith1')
         expect(json_data['attributes']).to eq(
           { 'token' => user.access_token.token }
         )
