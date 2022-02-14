@@ -14,7 +14,6 @@ Features:
 - Access management check.
 - TDD implementation.
 
-Postman test json link: https://www.getpostman.com/collections/5db23b5988c55ad6f8fd
 (Used TDD and Postman to verifies each request of the application)
 
 Gems used: 
